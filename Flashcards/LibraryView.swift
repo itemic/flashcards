@@ -42,6 +42,7 @@ struct LibraryView: View {
             
         }.navigationTitle("Library")
         .toolbar {
+            
             ToolbarItem(placement: .automatic) {
                 Button(action: {
                     showGridView.toggle()
@@ -52,17 +53,17 @@ struct LibraryView: View {
                         }
             
             ToolbarItem(placement: .automatic) {
-                
+
                 Button(action: {
                     withAnimation {
                         showStats.toggle()
                     }
                 }, label: {
-                    Text("Show/Hide Stats")
                     Image(systemName: "chart.bar.fill")
+                    Text("Stats")
                 })
             }
-            
+
             ToolbarItem(placement: .automatic) {
                 
                 Button(action: {
@@ -74,6 +75,7 @@ struct LibraryView: View {
                     Image(systemName: "square.on.square")
                 })
             }
+
         }
         
     }

@@ -25,37 +25,43 @@ struct CardsGridView: View {
                         Divider()
                         Text("\(card.sideB)")
                     } else {
-                        ZStack {
-                            HStack {
-                                Text("\(showFirstSide ? "A" : "B")").font(.system(size:180))
-                                    .foregroundColor(Color.white.opacity(0.1))
-                                Spacer()
-                            }
-                        if (showFirstSide) {
-                            
-                            HStack {
+                        
+                        Group {
+                            if (showFirstSide) {
                                 
-                                Spacer()
-                                Text("\(card.sideA)")
-                                Spacer()
-                            }
-                            
-                        } else {
-                            HStack {
-                                Spacer()
-                                Text("\(card.sideB)")
-                                Spacer()
+                                HStack {
+                                    
+                                    Spacer()
+                                    Text("\(card.sideA)")
+                                    Spacer()
+                                }
+                                
+                            } else {
+                                HStack {
+                                    Spacer()
+                                    Text("\(card.sideB)")
+                                    Spacer()
+                                }
                             }
                         }
-                    }
                     }
                     
                     Spacer()
                 }.font(.system(size: 24))
-                .padding()
+                //                .padding()
                 
             }.frame(height: 200)
             .background(LinearGradient(gradient: Gradient(colors: grayGradient), startPoint: .top, endPoint: .bottom))
+            .overlay(
+                Text("\(showFirstSide ? "Side A" : "Side B" )")
+                    .fontWeight(.medium)
+                    .padding([.leading, .trailing], 18)
+                    .padding([.top, .bottom], 8)
+                    .background(Color.black.opacity(0.2))
+                    .cornerRadius(200)
+                    .padding([.leading, .trailing], 18)
+                    .padding([.top, .bottom], 12)
+                    ,alignment: .top)
             if showStats {
                 VStack(alignment: .leading) {
                     HStack {
