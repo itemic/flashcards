@@ -10,6 +10,7 @@ import SwiftUI
 struct Sidebar: View {
     
     @State var disclose = true
+    @ObservedObject var tagsVM = FlashcardsVM()
     var body: some View {
         
         List() {
@@ -24,6 +25,10 @@ struct Sidebar: View {
                     Label("Library", systemImage: "books.vertical.fill")
                 }
                 
+                NavigationLink(destination: TagsView()) {
+                    Label("Tags", systemImage: "tag.fill")
+                }
+                
                 NavigationLink(destination: DetailView()) {
                     Label("Stats", systemImage: "chart.bar.xaxis")
 
@@ -33,30 +38,13 @@ struct Sidebar: View {
             Divider()
             
             DisclosureGroup("Tags", isExpanded: $disclose) {
-                NavigationLink(destination: DetailView()) {
-                    Label("Biology", systemImage: "square.grid.3x3.fill")
-                        
+                
+                ForEach(tagsVM.tags) {tag in
+                    NavigationLink(destination: DetailView()) {
+                        Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
+                            
 
-                }
-                NavigationLink(destination: DetailView()) {
-                    Label("Org Chem", systemImage: "square.grid.3x3.fill")
-                        
-
-                }
-                NavigationLink(destination: DetailView()) {
-                    Label("Calculus", systemImage: "square.grid.3x3.fill")
-                        
-
-                }
-                NavigationLink(destination: DetailView()) {
-                    Label("Category ", systemImage: "square.grid.3x3.fill")
-                        
-                }
-
-                NavigationLink(destination: DetailView()) {
-                    Label("Shakespeare", systemImage: "square.grid.3x3.fill")
-                        
-
+                    }
                 }
             }.listItemTint(.orange)
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCardView: View {
-    var vm: CardsVM
+    var vm: FlashcardsVM
     @State var sideA: String = ""
     @State var sideB: String = ""
     @Binding var isPresented: Bool
@@ -20,7 +20,7 @@ struct AddCardView: View {
                 TextField("Side A", text: $sideA)
                 TextField("Side B", text: $sideB)
                 Button(action: {
-                    var card = Card(sideA: sideA, sideB: sideB, tags: [])
+                    let card = Card(sideA: sideA, sideB: sideB, tags: [])
                     vm.addCard(card: card)
                     isPresented.toggle()
                 }) {
@@ -32,7 +32,7 @@ struct AddCardView: View {
 }
 
 struct AddCardView_Previews: PreviewProvider {
-    static let vm = CardsVM()
+    static let vm = FlashcardsVM()
     static var previews: some View {
         AddCardView(vm: vm, isPresented: .constant(true))
     }

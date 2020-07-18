@@ -52,16 +52,17 @@ struct CardsGridView: View {
                 
             }.frame(height: 200)
             .background(LinearGradient(gradient: Gradient(colors: grayGradient), startPoint: .top, endPoint: .bottom))
-            .overlay(
-                Text("\(showFirstSide ? "Side A" : "Side B" )")
+            .overlay(showBothSides ?  AnyView(EmptyView()):
+                AnyView(Text("\(showFirstSide ? "Side A" : "Side B" )")
                     .fontWeight(.medium)
                     .padding([.leading, .trailing], 18)
                     .padding([.top, .bottom], 8)
                     .background(Color.black.opacity(0.2))
                     .cornerRadius(200)
                     .padding([.leading, .trailing], 18)
-                    .padding([.top, .bottom], 12)
+                    .padding([.top, .bottom], 12))
                     ,alignment: .top)
+            ///TODO don't use type erasure
             if showStats {
                 VStack(alignment: .leading) {
                     HStack {

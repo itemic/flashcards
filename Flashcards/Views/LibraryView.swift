@@ -17,7 +17,7 @@ struct LibraryView: View {
     @State var showStats = false
     @State var showBothSides = true
     @State var showAddCardSheet = false
-    @ObservedObject var vm = CardsVM()
+    @ObservedObject var vm = FlashcardsVM()
     
     
     let columns = [

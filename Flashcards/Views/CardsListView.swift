@@ -11,7 +11,6 @@ struct CardsListView: View {
     let card: Card
     let arrows = ["arrow.up.square.fill", "arrow.up.right.square.fill", "arrow.right.square.fill", "arrow.down.right.square.fill", "arrow.down.square.fill"]
     
-    func randomArrow() { arrows.randomElement() }
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack {

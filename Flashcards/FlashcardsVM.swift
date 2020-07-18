@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CardsVM: ObservableObject {
+class FlashcardsVM: ObservableObject {
     @Published var words: [Card] = [
         Card(sideA: "spring", sideB: "春", tags: []),
         Card(sideA: "summer", sideB: "夏", tags: []),
@@ -52,7 +52,20 @@ class CardsVM: ObservableObject {
         Card(sideA: "sunny", sideB: "晴れ", tags: [])
     ]
     
+    @Published var tags: [Tag] = [
+        Tag(name: "japanese"),
+        Tag(name: "verb"),
+        Tag(name: "adjective")
+    ]
+    
+    /// Create new tag
+    func addTag(tag: Tag...) {
+        tags.append(contentsOf: tag)
+    }
+    
+    /// Create new card
     func addCard(card: Card) -> () {
         words.append(card)
     }
+
 }

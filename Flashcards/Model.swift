@@ -11,7 +11,7 @@ struct Card: Identifiable {
     let id = UUID()
     var sideA: String
     var sideB: String
-    var tags: [Tag]? = []
+    var tags: [Tag] = []
 }
 
 struct Tag: Identifiable {
