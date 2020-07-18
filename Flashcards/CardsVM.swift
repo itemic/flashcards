@@ -8,7 +8,7 @@
 import Foundation
 
 class CardsVM: ObservableObject {
-    let words: [Card] = [
+    @Published var words: [Card] = [
         Card(sideA: "spring", sideB: "春", tags: []),
         Card(sideA: "summer", sideB: "夏", tags: []),
         Card(sideA: "fall", sideB: "秋", tags: []),
@@ -51,4 +51,8 @@ class CardsVM: ObservableObject {
         Card(sideA: "cloudy", sideB: "曇り", tags: []),
         Card(sideA: "sunny", sideB: "晴れ", tags: [])
     ]
+    
+    func addCard(card: Card) -> () {
+        words.append(card)
+    }
 }

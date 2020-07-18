@@ -19,6 +19,7 @@
 		45C9787824C05F91006E3BED /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9787724C05F91006E3BED /* Sidebar.swift */; };
 		45C9787A24C06633006E3BED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9787924C06633006E3BED /* Model.swift */; };
 		45C9787C24C06688006E3BED /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9787B24C06688006E3BED /* LibraryView.swift */; };
+		45D1285B24C2AD6E008F760A /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1285A24C2AD6E008F760A /* AddCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		45C9787724C05F91006E3BED /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		45C9787924C06633006E3BED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		45C9787B24C06688006E3BED /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		45D1285A24C2AD6E008F760A /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				456243C524C045BF00EDF432 /* FlashcardsApp.swift */,
+				45D1285A24C2AD6E008F760A /* AddCardView.swift */,
 				456243C724C045BF00EDF432 /* ContentView.swift */,
 				45C9787724C05F91006E3BED /* Sidebar.swift */,
 				45C9787B24C06688006E3BED /* LibraryView.swift */,
@@ -285,6 +288,7 @@
 				456243C624C045BF00EDF432 /* FlashcardsApp.swift in Sources */,
 				458C44AD24C1B62900495DC8 /* CardsListView.swift in Sources */,
 				45C9787A24C06633006E3BED /* Model.swift in Sources */,
+				45D1285B24C2AD6E008F760A /* AddCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = itemic.Flashcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -476,7 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = itemic.Flashcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

@@ -16,6 +16,7 @@ struct LibraryView: View {
     @State var showGridView = true
     @State var showStats = false
     @State var showBothSides = true
+    @State var showAddCardSheet = false
     @ObservedObject var vm = CardsVM()
     
     
@@ -71,9 +72,25 @@ struct LibraryView: View {
                         showBothSides.toggle()
                     }
                 }, label: {
-                    Text("A/B")
                     Image(systemName: "square.on.square")
+                    Text("A/B")
+                    
                 })
+            }
+            
+            ToolbarItem(placement: .automatic) {
+                
+                Button(action: {
+                    withAnimation {
+                        showAddCardSheet.toggle()
+                    }
+                }, label: {
+                    Image(systemName: "plus.rectangle.on.rectangle")
+                    Text("Add Card")
+                    
+                }).sheet(isPresented: $showAddCardSheet) {
+                    AddCardView(vm: vm, isPresented: $showAddCardSheet)
+                }
             }
 
         }
