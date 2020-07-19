@@ -7,7 +7,11 @@
 
 import Foundation
 
-class Card: Identifiable, ObservableObject {
+class Card: Identifiable, ObservableObject, Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let id = UUID()
     var sideA: String
     var sideB: String
@@ -18,6 +22,8 @@ class Card: Identifiable, ObservableObject {
         self.sideB = sideB
         self.tags = tags
     }
+    
+    
     
     func assignTag(tag: Tag...) {
         tags.append(contentsOf: tag)
@@ -38,4 +44,13 @@ class Tag: Identifiable, Equatable, ObservableObject {
 
     }
     
+}
+
+
+class Level {
+    var levelCards: [Card]
+    
+    init(cards: [Card]) {
+        self.levelCards = cards 
+    }
 }

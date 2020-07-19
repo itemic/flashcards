@@ -29,7 +29,7 @@ struct Sidebar: View {
                     Label("Tags", systemImage: "tag.fill")
                 }
                 
-                NavigationLink(destination: DetailView()) {
+                NavigationLink(destination: DetailView().environmentObject(vm)) {
                     Label("Stats", systemImage: "chart.bar.xaxis")
 
                 }
