@@ -32,6 +32,9 @@ struct PrimaryView: View {
 struct DetailView: View {
     var body: some View {
         Text("Detail")
+        NavigationLink(destination: PracticeModeView()) {
+            Text("Practice")
+        }
     }
 }
 

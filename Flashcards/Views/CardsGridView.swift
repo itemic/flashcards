@@ -63,7 +63,7 @@ struct CardsGridView: View {
             }.frame(height: 200)
             .background(LinearGradient(gradient: Gradient(colors: grayGradient), startPoint: .top, endPoint: .bottom))
             .overlay(showBothSides ?  AnyView(EmptyView()):
-                        AnyView(Text("\(showFirstSide ? "Side A" : "Side B" )")
+                        AnyView(Text("\(showFirstSide ? "a" : "b" )")
                                     .fontWeight(.medium)
                                     .padding([.leading, .trailing], 18)
                                     .padding([.top, .bottom], 8)

@@ -14,6 +14,7 @@
 		456243D824C045C100EDF432 /* FlashcardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456243D724C045C100EDF432 /* FlashcardsTests.swift */; };
 		456243E324C045C100EDF432 /* FlashcardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456243E224C045C100EDF432 /* FlashcardsUITests.swift */; };
 		4573AEDE24C45546007F5BF8 /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4573AEDD24C45546007F5BF8 /* EditCardView.swift */; };
+		4573AEE024C464B8007F5BF8 /* PracticeModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4573AEDF24C464B8007F5BF8 /* PracticeModeView.swift */; };
 		458C44AB24C1B55E00495DC8 /* FlashcardsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C44AA24C1B55E00495DC8 /* FlashcardsVM.swift */; };
 		458C44AD24C1B62900495DC8 /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C44AC24C1B62900495DC8 /* CardsListView.swift */; };
 		458C44AF24C1B64600495DC8 /* CardsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C44AE24C1B64600495DC8 /* CardsGridView.swift */; };
@@ -55,6 +56,7 @@
 		456243E224C045C100EDF432 /* FlashcardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITests.swift; sourceTree = "<group>"; };
 		456243E424C045C100EDF432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4573AEDD24C45546007F5BF8 /* EditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
+		4573AEDF24C464B8007F5BF8 /* PracticeModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModeView.swift; sourceTree = "<group>"; };
 		458C44AA24C1B55E00495DC8 /* FlashcardsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsVM.swift; sourceTree = "<group>"; };
 		458C44AC24C1B62900495DC8 /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
 		458C44AE24C1B64600495DC8 /* CardsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsGridView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				45D1285A24C2AD6E008F760A /* AddCardView.swift */,
 				4573AEDD24C45546007F5BF8 /* EditCardView.swift */,
 				456243C724C045BF00EDF432 /* ContentView.swift */,
+				4573AEDF24C464B8007F5BF8 /* PracticeModeView.swift */,
 				45D1285C24C2BE57008F760A /* TagsView.swift */,
 				45C9787724C05F91006E3BED /* Sidebar.swift */,
 				45C9787B24C06688006E3BED /* LibraryView.swift */,
@@ -298,6 +301,7 @@
 				45D1285D24C2BE57008F760A /* TagsView.swift in Sources */,
 				456243C824C045BF00EDF432 /* ContentView.swift in Sources */,
 				458C44AF24C1B64600495DC8 /* CardsGridView.swift in Sources */,
+				4573AEE024C464B8007F5BF8 /* PracticeModeView.swift in Sources */,
 				45C9787C24C06688006E3BED /* LibraryView.swift in Sources */,
 				45C9787824C05F91006E3BED /* Sidebar.swift in Sources */,
 				4573AEDE24C45546007F5BF8 /* EditCardView.swift in Sources */,
