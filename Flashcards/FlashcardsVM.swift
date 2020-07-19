@@ -6,11 +6,20 @@
 //
 
 import Foundation
+import Combine
 
 class FlashcardsVM: ObservableObject {
-    @Published var words: [Card] = []
+    @Published var words: [Card] = [] {
+        willSet {
+            self.objectWillChange.send()
+        }
+    }
     
-    @Published var tags: [Tag] = []
+    @Published var tags: [Tag] = [] {
+        willSet {
+            self.objectWillChange.send()
+        }
+    }
     
     init() {
         let t1 = Tag(name: "japanese")

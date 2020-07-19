@@ -75,6 +75,6 @@ struct CardsListView: View {
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
         
-        CardsListView(card: Card(sideA: "Side A", sideB: "Side B"))
+        CardsListView(card: Card(sideA: "Side A", sideB: "Side B", tags: []))
     }
 }

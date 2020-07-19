@@ -7,20 +7,26 @@
 
 import Foundation
 
-struct Card: Identifiable {
+class Card: Identifiable, ObservableObject {
     let id = UUID()
     var sideA: String
     var sideB: String
     var tags: [Tag] = []
     
-    mutating func assignTag(tag: Tag...) {
+    init(sideA: String, sideB: String, tags: [Tag]) {
+        self.sideA = sideA
+        self.sideB = sideB
+        self.tags = tags
+    }
+    
+    func assignTag(tag: Tag...) {
         tags.append(contentsOf: tag)
     }
 }
 
-class Tag: Identifiable, Equatable {
+class Tag: Identifiable, Equatable, ObservableObject {
     static func == (lhs: Tag, rhs: Tag) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
     
     let id = UUID()

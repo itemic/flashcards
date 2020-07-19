@@ -37,7 +37,7 @@ struct LibraryView: View {
                         
                         
                     }) { item in
-                        CardsGridView(card: item, showStats: $showStats, showBothSides: $showBothSides)
+                        CardsGridView(card: item, showStats: $showStats, showBothSides: $showBothSides).environmentObject(vm)
                             
                     }
                 }.padding()
