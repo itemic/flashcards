@@ -18,7 +18,8 @@ struct LibraryView: View {
     @State var showBothSides = true
     @State var showAddCardSheet = false
     var filterVar: String?
-    @ObservedObject var vm = FlashcardsVM()
+    var filterTag: Tag?
+    @EnvironmentObject var vm: FlashcardsVM
     
     
     let columns = [
@@ -31,10 +32,9 @@ struct LibraryView: View {
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(vm.words.filter {
                         
+                        filterTag == nil ? true : $0.tags.contains(filterTag!)
+                 
                         
-                            $0.tags.contains(where: {
-                                $0.name == filterVar ?? $0.name
-                            })
                         
                     }) { item in
                         CardsGridView(card: item, showStats: $showStats, showBothSides: $showBothSides)

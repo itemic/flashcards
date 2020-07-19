@@ -18,9 +18,18 @@ struct Card: Identifiable {
     }
 }
 
-struct Tag: Identifiable {
+class Tag: Identifiable, Equatable {
+    static func == (lhs: Tag, rhs: Tag) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
     let id = UUID()
     let name: String
     
+    init(name: String) {
+        self.name = name
+        print("creating tag...\(self.id)...\(self.name)")
+
+    }
     
 }

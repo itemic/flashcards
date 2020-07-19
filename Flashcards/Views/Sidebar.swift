@@ -10,7 +10,7 @@ import SwiftUI
 struct Sidebar: View {
     
     @State var disclose = true
-    @ObservedObject var tagsVM = FlashcardsVM()
+    @EnvironmentObject var vm: FlashcardsVM
     var body: some View {
         
         List() {
@@ -21,7 +21,7 @@ struct Sidebar: View {
                     
                 }
                 
-                NavigationLink(destination: LibraryView()) {
+                NavigationLink(destination: LibraryView().environmentObject(vm)) {
                     Label("Library", systemImage: "books.vertical.fill")
                 }
                 
@@ -39,8 +39,8 @@ struct Sidebar: View {
             
             DisclosureGroup("Tags", isExpanded: $disclose) {
                 
-                ForEach(tagsVM.tags) {tag in
-                    NavigationLink(destination: LibraryView(filterVar: tag.name)) {
+                ForEach(vm.tags) {tag in
+                    NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {
                         Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
                             
 

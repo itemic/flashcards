@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var vm: FlashcardsVM
     var body: some View {
         NavigationView {
             Sidebar()
                 .navigationTitle("Flashcards")
+                .environmentObject(vm)
             PrimaryView()
             
         }
@@ -19,14 +21,7 @@ struct ContentView: View {
     }
 }
 
-struct SideBar: View {
-    var body: some View {
-        List(1..<100) { i in
-            Image(systemName: "circle.fill")
-            Text("Item \(i)")
-        }.listStyle(SidebarListStyle())
-    }
-}
+
 
 struct PrimaryView: View {
     var body: some View {
