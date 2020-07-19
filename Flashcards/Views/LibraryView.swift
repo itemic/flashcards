@@ -17,6 +17,7 @@ struct LibraryView: View {
     @State var showStats = false
     @State var showBothSides = true
     @State var showAddCardSheet = false
+    var filterVar: String?
     @ObservedObject var vm = FlashcardsVM()
     
     
@@ -28,7 +29,14 @@ struct LibraryView: View {
         ScrollView {
             if showGridView {
                 LazyVGrid(columns: columns, spacing: 25) {
-                    ForEach(vm.words) { item in
+                    ForEach(vm.words.filter {
+                        
+                        
+                            $0.tags.contains(where: {
+                                $0.name == filterVar ?? $0.name
+                            })
+                        
+                    }) { item in
                         CardsGridView(card: item, showStats: $showStats, showBothSides: $showBothSides)
                             
                     }

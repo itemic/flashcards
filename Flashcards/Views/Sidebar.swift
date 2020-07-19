@@ -40,7 +40,7 @@ struct Sidebar: View {
             DisclosureGroup("Tags", isExpanded: $disclose) {
                 
                 ForEach(tagsVM.tags) {tag in
-                    NavigationLink(destination: DetailView()) {
+                    NavigationLink(destination: LibraryView(filterVar: tag.name)) {
                         Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
                             
 

@@ -53,20 +53,30 @@ struct CardsGridView: View {
             }.frame(height: 200)
             .background(LinearGradient(gradient: Gradient(colors: grayGradient), startPoint: .top, endPoint: .bottom))
             .overlay(showBothSides ?  AnyView(EmptyView()):
-                AnyView(Text("\(showFirstSide ? "Side A" : "Side B" )")
-                    .fontWeight(.medium)
-                    .padding([.leading, .trailing], 18)
-                    .padding([.top, .bottom], 8)
-                    .background(Color.black.opacity(0.2))
-                    .cornerRadius(200)
-                    .padding([.leading, .trailing], 18)
-                    .padding([.top, .bottom], 12))
-                    ,alignment: .top)
+                        AnyView(Text("\(showFirstSide ? "Side A" : "Side B" )")
+                                    .fontWeight(.medium)
+                                    .padding([.leading, .trailing], 18)
+                                    .padding([.top, .bottom], 8)
+                                    .background(Color.black.opacity(0.2))
+                                    .cornerRadius(200)
+                                    .padding([.leading, .trailing], 18)
+                                    .padding([.top, .bottom], 12))
+                     ,alignment: .top)
             ///TODO don't use type erasure
             if showStats {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Bottom Part").fontWeight(.heavy)
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Image(systemName: "tag")
+                                Text("Tags").fontWeight(.heavy)
+                            }
+                            HStack {
+                                ForEach(card.tags) {tag in
+                                    Text(tag.name)
+                                }
+                            }
+                        }
                         Spacer()
                     }
                     .padding()
@@ -91,6 +101,6 @@ struct SwiftUIView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        CardsGridView(card: Card(sideA: "Side A", sideB: "Side B"),showStats: .constant(true), showBothSides: .constant(false))
+        CardsGridView(card: Card(sideA: "Side A", sideB: "Side B", tags: [Tag(name: "testTag"), Tag(name: "bestTag")]),showStats: .constant(true), showBothSides: .constant(false))
     }
 }
