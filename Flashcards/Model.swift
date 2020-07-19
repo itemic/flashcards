@@ -12,9 +12,15 @@ struct Card: Identifiable {
     var sideA: String
     var sideB: String
     var tags: [Tag] = []
+    
+    mutating func assignTag(tag: Tag...) {
+        tags.append(contentsOf: tag)
+    }
 }
 
 struct Tag: Identifiable {
     let id = UUID()
     let name: String
+    
+    
 }

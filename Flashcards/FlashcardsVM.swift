@@ -74,5 +74,6 @@ class FlashcardsVM: ObservableObject {
     func addCard(card: Card) -> () {
         words.append(card)
     }
+    
 
 }
