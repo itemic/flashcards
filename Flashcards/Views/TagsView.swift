@@ -43,31 +43,7 @@ struct TagsView: View {
                     
                     
                 }).popover(isPresented: $showAddTagsPopover, content: {
-                    NavigationView {
-                        ScrollView {
-                            VStack(alignment: .leading) {
-                                Text("Add multiple tags at once by separating them using commas.").font(.caption).foregroundColor(.secondary)
-                                AutoFocusTextField(text: $newTagsTextField)
-                                Spacer()
-                            }.navigationTitle("Add Tags").navigationBarTitleDisplayMode(.inline)
-                            .padding()
-                            .frame(width: 300) // todo: if tags are long then stretch
-                            .toolbar {
-                                ToolbarItem(placement: .automatic) {
-                                    Button("Cancel") {
-                                        showAddTagsPopover.toggle()
-                                    }
-                                }
-                                ToolbarItem(placement: .automatic) {
-                                    Button("Add") {
-                                        addTags()
-                                        newTagsTextField = "" // empty the list
-                                        showAddTagsPopover.toggle()
-                                    }.disabled(newTagsTextField.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty )
-                                }
-                        }
-                        }
-                    }.frame(width: 300,height: 300)
+                    AddTagsPopoverView(textField: $newTagsTextField, showAddTagsPopover: $showAddTagsPopover).environmentObject(vm)
                     
                 })
             }
@@ -76,15 +52,7 @@ struct TagsView: View {
         .navigationTitle("Tags").navigationBarTitleDisplayMode(.inline)
         .listStyle(InsetGroupedListStyle())
     }
-    func addTags() {
-        let individualTags = newTagsTextField.split(separator: ",", omittingEmptySubsequences: true)
-        for tag in individualTags {
-            let clearedTag = tag.trimmingCharacters(in: .whitespacesAndNewlines)
-            if !clearedTag.isEmpty {
-                vm.addTag(tag: Tag(name: clearedTag))
-            }
-        }
-    }
+    
     func delete(at offsets: IndexSet) {
         // delete tags from words
         for card in vm.words {
@@ -141,5 +109,49 @@ struct AutoFocusTextField: UIViewRepresentable {
         func textFieldDidChangeSelection(_ textField: UITextField) {
             parent.text = textField.text ?? ""
         }
+    }
+}
+
+struct AddTagsPopoverView: View {
+    @EnvironmentObject var vm: FlashcardsVM
+    @Binding var textField: String
+    @Binding var showAddTagsPopover: Bool
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Add multiple tags at once by separating them using commas.").font(.caption).foregroundColor(.secondary)
+                    AutoFocusTextField(text: $textField)
+                    Spacer()
+                }.navigationTitle("Add Tags").navigationBarTitleDisplayMode(.inline)
+                .padding()
+                .frame(width: 300) // todo: if tags are long then stretch
+                .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        Button("Cancel") {
+                            showAddTagsPopover.toggle()
+                        }
+                    }
+                    ToolbarItem(placement: .automatic) {
+                        Button("Add") {
+                            addTags()
+                            textField = "" // empty the list
+                            showAddTagsPopover.toggle()
+                        }.disabled(textField.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty )
+                    }
+                }
+            }
+        }.frame(width: 300,height: 300)
+    }
+    
+    func addTags() {
+        let individualTags = textField.split(separator: ",", omittingEmptySubsequences: true)
+        for tag in individualTags {
+            let clearedTag = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !clearedTag.isEmpty {
+                vm.addTag(tag: Tag(name: clearedTag))
+            }
+        }
+        
     }
 }

@@ -9,31 +9,25 @@ import SwiftUI
 import Combine
 
 
-struct CardsGridView: View {
-    @EnvironmentObject var vm: FlashcardsVM
-    @ObservedObject var card: Card
-    @Binding var showStats: Bool
+struct CardPartialView: View {
+    var sideA: String
+    var sideB: String
+    @Binding var showFirstSide: Bool
     @Binding var showBothSides: Bool
-    @State var showFirstSide = true
-    @State var showEditView = false
     
-    
-    func clearAllTags() {
-        
-        card.tags.removeAll()
-        card.objectWillChange.send()
-        //bug is that the element doesn't actually delete when viewing from filtered list
-    }
-    
-    var Card: some View {
+    var body: some View {
         VStack {
             VStack {
                 Spacer()
                 
                 if (showBothSides) {
-                    Text("\(card.sideA)")
+                    Spacer()
+                    Text("\(sideA)")
+                    Spacer()
                     Divider()
-                    Text("\(card.sideB)")
+                    Spacer()
+                    Text("\(sideB)")
+                    Spacer()
                 } else {
                     Group {
                         if (showFirstSide) {
@@ -41,14 +35,14 @@ struct CardsGridView: View {
                             HStack {
                                 
                                 Spacer()
-                                Text("\(card.sideA)")
+                                Text("\(sideA)")
                                 Spacer()
                             }
                             
                         } else {
                             HStack {
                                 Spacer()
-                                Text("\(card.sideB)")
+                                Text("\(sideB)")
                                 Spacer()
                             }
                         }
@@ -72,6 +66,25 @@ struct CardsGridView: View {
                                 .padding([.top, .bottom], 12))
                  ,alignment: .top)
     }
+}
+
+struct CardsGridView: View {
+    @EnvironmentObject var vm: FlashcardsVM
+    @ObservedObject var card: Card
+    @Binding var showStats: Bool
+    @Binding var showBothSides: Bool
+    @State var showFirstSide = true
+    @State var showEditView = false
+    
+    
+    func clearAllTags() {
+        
+        card.tags.removeAll()
+        card.objectWillChange.send()
+        //bug is that the element doesn't actually delete when viewing from filtered list
+    }
+    
+  
     
     var Stats: some View {
         VStack(alignment: .leading) {
@@ -115,7 +128,7 @@ struct CardsGridView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Card
+            CardPartialView(sideA: card.sideA, sideB: card.sideB, showFirstSide: $showFirstSide, showBothSides: $showBothSides)
             if showStats {
                 Stats
             }
