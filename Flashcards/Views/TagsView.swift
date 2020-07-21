@@ -36,6 +36,7 @@ struct TagsView: View {
             ToolbarItem(placement: .automatic) {
                 
                 Button(action: {
+                    newTagsTextField = ""
                     showAddTagsPopover.toggle()
                 }, label: {
                     Text("Add Tag")
@@ -55,7 +56,6 @@ struct TagsView: View {
                                 ToolbarItem(placement: .automatic) {
                                     Button("Cancel") {
                                         showAddTagsPopover.toggle()
-                                        newTagsTextField = ""
                                     }
                                 }
                                 ToolbarItem(placement: .automatic) {
