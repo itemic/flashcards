@@ -17,11 +17,12 @@ struct Sidebar: View {
             
             Group {
                 NavigationLink(destination: DetailView()) {
-                    Label("Today", systemImage: "calendar.badge.clock")
+                    Label("Today", systemImage: "sun.max.fill")
                     
-                }
+                }.listItemTint(.yellow)
                 
-                NavigationLink(destination: LibraryView().environmentObject(vm)) {
+                Section(header: Text("Modes")){
+                    NavigationLink(destination: LibraryView().environmentObject(vm)) {
                     Label("Library", systemImage: "books.vertical.fill")
                 }
                 
@@ -32,15 +33,15 @@ struct Sidebar: View {
                 NavigationLink(destination: DetailView().environmentObject(vm)) {
                     Label("Stats", systemImage: "chart.bar.xaxis")
 
-                }
+                }}
             }
-
+            
             
             
             
                 
                 Section(header:
-                            Text("Tags").font(.headline)
+                            Text("Tags")
                 ) {
                     ForEach(vm.tags) {tag in
                         NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {

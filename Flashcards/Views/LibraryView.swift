@@ -86,7 +86,7 @@ struct LibraryView: View {
                 }
             }
 
-        }
+        }.navigationBarTitleDisplayMode(.inline)
         
     }
 }

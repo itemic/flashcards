@@ -32,7 +32,7 @@ class Card: Identifiable, ObservableObject, Equatable {
 
 class Tag: Identifiable, Equatable, ObservableObject {
     static func == (lhs: Tag, rhs: Tag) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.name.lowercased() == rhs.name.lowercased() // primary key
     }
     
     let id = UUID()
@@ -41,6 +41,7 @@ class Tag: Identifiable, Equatable, ObservableObject {
     init(name: String) {
         self.name = name
         print("creating tag...\(self.id)...\(self.name)")
+        
 
     }
     

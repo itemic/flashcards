@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCardView: View {
-    var vm: FlashcardsVM
+    @ObservedObject var vm: FlashcardsVM
     @State var sideA: String = ""
     @State var sideB: String = ""
     @Binding var isPresented: Bool

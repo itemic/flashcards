@@ -76,7 +76,11 @@ class FlashcardsVM: ObservableObject {
     
     /// Create new tag
     func addTag(tag: Tag...) {
-        tags.append(contentsOf: tag)
+        for t in tag {
+            if !tags.contains(t) {
+                tags.append(t)
+            }
+        }
     }
     
     /// Create new card

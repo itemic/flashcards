@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+
 struct CardsGridView: View {
     @EnvironmentObject var vm: FlashcardsVM
     @ObservedObject var card: Card
@@ -15,7 +16,7 @@ struct CardsGridView: View {
     @Binding var showBothSides: Bool
     @State var showFirstSide = true
     @State var showEditView = false
-    let grayGradient = [Color(UIColor.systemGray6), Color(UIColor.systemGray5)]
+    
     
     func clearAllTags() {
         
@@ -24,96 +25,100 @@ struct CardsGridView: View {
         //bug is that the element doesn't actually delete when viewing from filtered list
     }
     
-    var body: some View {
-        VStack(spacing: 0) {
+    var Card: some View {
+        VStack {
             VStack {
-                VStack {
-                    Spacer()
-                    
-                    if (showBothSides) {
-                        Text("\(card.sideA)")
-                        Divider()
-                        Text("\(card.sideB)")
-                    } else {
-                        
-                        Group {
-                            if (showFirstSide) {
-                                
-                                HStack {
-                                    
-                                    Spacer()
-                                    Text("\(card.sideA)")
-                                    Spacer()
-                                }
-                                
-                            } else {
-                                HStack {
-                                    Spacer()
-                                    Text("\(card.sideB)")
-                                    Spacer()
-                                }
-                            }
-                        }
-                    }
-                    
-                    Spacer()
-                }.font(.system(size: 24))
-                //                .padding()
+                Spacer()
                 
-            }.frame(height: 200)
-            .background(LinearGradient(gradient: Gradient(colors: grayGradient), startPoint: .top, endPoint: .bottom))
-            .overlay(showBothSides ?  AnyView(EmptyView()):
-                        AnyView(Text("\(showFirstSide ? "a" : "b" )")
-                                    .fontWeight(.medium)
-                                    .padding([.leading, .trailing], 18)
-                                    .padding([.top, .bottom], 8)
-                                    .background(Color.black.opacity(0.2))
-                                    .cornerRadius(200)
-                                    .padding([.leading, .trailing], 18)
-                                    .padding([.top, .bottom], 12))
-                     ,alignment: .top)
-            ///TODO don't use type erasure
-            if showStats {
-                VStack(alignment: .leading) {
-                    HStack {
-                        VStack(alignment: .leading) {
+                if (showBothSides) {
+                    Text("\(card.sideA)")
+                    Divider()
+                    Text("\(card.sideB)")
+                } else {
+                    Group {
+                        if (showFirstSide) {
+                            
                             HStack {
-                                Image(systemName: "tag")
-                                Text("Tags").fontWeight(.heavy)
+                                
                                 Spacer()
-                                Button(action: {
-//                                    clearAllTags()
-                                    showEditView.toggle()
-                                    
-                                }) {
-                                    Image(systemName: "pencil")
-                                    Text("Edit")
-                                }.sheet(isPresented: $showEditView) {
-                                    EditCardView(vm: vm, card: card, isPresented: $showEditView)
-                                }
-                                .padding([.leading, .trailing], 10)
-                                .padding([.top, .bottom], 5)
-                                .background(Color(UIColor.systemGray6))
-                                .cornerRadius(8)
-                            }
-                            HStack {
-                                ForEach(card.tags) {tag in
-                                    Text(tag.name)
-                                }
+                                Text("\(card.sideA)")
+                                Spacer()
                             }
                             
+                        } else {
+                            HStack {
+                                Spacer()
+                                Text("\(card.sideB)")
+                                Spacer()
+                            }
                         }
-                        Spacer()
-                    
                     }
-                    .padding()
-                    Spacer()
+                }
+                
+                Spacer()
+            }.font(.system(size: 24))
+            //                .padding()
+            
+        }.frame(height: 200)
+        .background(LinearGradient(gradient: Gradient(colors: [Color(UIColor.systemGray6), Color(UIColor.systemGray5)]), startPoint: .top, endPoint: .bottom))
+        .overlay(showBothSides ?  AnyView(EmptyView()):
+                    AnyView(Text("\(showFirstSide ? "a" : "b" )")
+                                .fontWeight(.medium)
+                                .padding([.leading, .trailing], 18)
+                                .padding([.top, .bottom], 8)
+                                .background(Color.black.opacity(0.2))
+                                .cornerRadius(200)
+                                .padding([.leading, .trailing], 18)
+                                .padding([.top, .bottom], 12))
+                 ,alignment: .top)
+    }
+    
+    var Stats: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image(systemName: "tag")
+                        Text("Tags").fontWeight(.heavy)
+                        Spacer()
+                        Button(action: {
+//                                    clearAllTags()
+                            showEditView.toggle()
+                            
+                        }) {
+                            Image(systemName: "pencil")
+                            Text("Edit")
+                        }.sheet(isPresented: $showEditView) {
+                            EditCardView(vm: vm, card: card, isPresented: $showEditView)
+                        }
+                        .padding([.leading, .trailing], 10)
+                        .padding([.top, .bottom], 5)
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(8)
+                    }
+                    HStack {
+                        ForEach(card.tags) {tag in
+                            Text(tag.name)
+                        }
+                    }
                     
-                }.frame(height: 100)
-                .background(LinearGradient(gradient: Gradient(colors:  [.white]), startPoint: .top, endPoint: .bottom))
+                }
+                Spacer()
+            
             }
+            .padding()
+            Spacer()
             
-            
+        }.frame(height: 100)
+        .background(LinearGradient(gradient: Gradient(colors:  [.white]), startPoint: .top, endPoint: .bottom))
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            Card
+            if showStats {
+                Stats
+            }
         }
         .cornerRadius(30)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 10)
