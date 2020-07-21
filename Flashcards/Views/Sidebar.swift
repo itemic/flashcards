@@ -34,19 +34,22 @@ struct Sidebar: View {
 
                 }
             }
-            
-            Divider()
-            
-            DisclosureGroup("Tags", isExpanded: $disclose) {
-                
-                ForEach(vm.tags) {tag in
-                    NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {
-                        Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
-                            
 
+            
+            
+            
+                
+                Section(header:
+                            Text("Tags").font(.headline)
+                ) {
+                    ForEach(vm.tags) {tag in
+                        NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {
+                            Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
+                                
+
+                        }
                     }
-                }
-            }.listItemTint(.orange)
+                }.listItemTint(.orange)
     
             
             

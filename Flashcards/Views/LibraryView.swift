@@ -13,7 +13,7 @@ import SwiftUI
 
 struct LibraryView: View {
     
-    @State var showGridView = true
+    
     @State var showStats = false
     @State var showBothSides = true
     @State var showAddCardSheet = false
@@ -28,7 +28,7 @@ struct LibraryView: View {
     
     var body: some View {
         ScrollView {
-            if showGridView {
+
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(vm.words.filter {
                         
@@ -41,25 +41,10 @@ struct LibraryView: View {
                             
                     }
                 }.padding()
-            } else {
-                LazyVStack(spacing: 10) {
-                    ForEach(vm.words) { item in
-                        CardsListView(card: item)
-                    }
-                }.padding()
-            }
+            
             
         }.navigationTitle("Library")
         .toolbar {
-            
-            ToolbarItem(placement: .automatic) {
-                Button(action: {
-                    showGridView.toggle()
-                }, label: {
-                    Text("Side")
-                    Image(systemName: "\(showGridView ? "a.square" : "b.square")")
-                })
-                        }
             
             ToolbarItem(placement: .automatic) {
 
