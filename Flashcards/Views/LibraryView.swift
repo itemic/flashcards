@@ -17,8 +17,8 @@ struct LibraryView: View {
     @State var showStats = false
     @State var showBothSides = true
     @State var showAddCardSheet = false
-    var filterVar: String?
     var filterTag: Tag?
+    var filterUnfiltered: Bool?
     @EnvironmentObject var vm: FlashcardsVM
     
     
@@ -32,7 +32,7 @@ struct LibraryView: View {
                 LazyVGrid(columns: columns, spacing: 25) {
                     ForEach(vm.words.filter {
                         
-                        filterTag == nil ? true : $0.tags.contains(filterTag!)
+                        filterUnfiltered == true ? $0.tags.isEmpty : filterTag == nil ? true : $0.tags.contains(filterTag!)
                  
                         
                         

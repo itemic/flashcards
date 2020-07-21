@@ -46,10 +46,13 @@ struct Sidebar: View {
                     ForEach(vm.tags) {tag in
                         NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {
                             Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
-                                
-
                         }
                     }
+                    
+                    
+                        NavigationLink(destination: LibraryView(filterUnfiltered: true).environmentObject(vm)) {
+                            Label("Uncategorized", systemImage: "tag.slash.fill")
+                        }
                 }.listItemTint(.orange)
     
             

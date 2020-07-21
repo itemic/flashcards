@@ -27,6 +27,7 @@ struct EditCardView: View {
         card.sideB = sideB.trimmingCharacters(in: .whitespaces)
         
         card.objectWillChange.send()
+        vm.objectWillChange.send()
     }
     
     init(vm: FlashcardsVM, card: Card, isPresented: Binding<Bool>) {
