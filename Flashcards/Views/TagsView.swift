@@ -54,7 +54,8 @@ struct TagsView: View {
                             .toolbar {
                                 ToolbarItem(placement: .automatic) {
                                     Button("Cancel") {
-                                        
+                                        showAddTagsPopover.toggle()
+                                        newTagsTextField = ""
                                     }
                                 }
                                 ToolbarItem(placement: .automatic) {
