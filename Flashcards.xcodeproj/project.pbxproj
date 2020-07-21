@@ -23,6 +23,7 @@
 		45C9787C24C06688006E3BED /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9787B24C06688006E3BED /* LibraryView.swift */; };
 		45D1285B24C2AD6E008F760A /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1285A24C2AD6E008F760A /* AddCardView.swift */; };
 		45D1285D24C2BE57008F760A /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D1285C24C2BE57008F760A /* TagsView.swift */; };
+		45D2748F24C72C96008F494E /* CardMutationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2748E24C72C96008F494E /* CardMutationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		45C9787B24C06688006E3BED /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		45D1285A24C2AD6E008F760A /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 		45D1285C24C2BE57008F760A /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		45D2748E24C72C96008F494E /* CardMutationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMutationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				45D1285A24C2AD6E008F760A /* AddCardView.swift */,
 				4573AEDD24C45546007F5BF8 /* EditCardView.swift */,
+				45D2748E24C72C96008F494E /* CardMutationView.swift */,
 				456243C724C045BF00EDF432 /* ContentView.swift */,
 				4573AEDF24C464B8007F5BF8 /* PracticeModeView.swift */,
 				45D1285C24C2BE57008F760A /* TagsView.swift */,
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				458C44AB24C1B55E00495DC8 /* FlashcardsVM.swift in Sources */,
+				45D2748F24C72C96008F494E /* CardMutationView.swift in Sources */,
 				45D1285D24C2BE57008F760A /* TagsView.swift in Sources */,
 				456243C824C045BF00EDF432 /* ContentView.swift in Sources */,
 				458C44AF24C1B64600495DC8 /* CardsGridView.swift in Sources */,

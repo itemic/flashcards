@@ -151,7 +151,9 @@ struct AddTagsPopoverView: View {
             if !clearedTag.isEmpty {
                 vm.addTag(tag: Tag(name: clearedTag))
             }
+            
         }
+        vm.objectWillChange.send()
         
     }
 }

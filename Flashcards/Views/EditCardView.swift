@@ -44,22 +44,27 @@ struct EditCardView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Edit card!").bold()
-            TextField("Side A", text: $sideA)
-            TextField("Side B", text: $sideB)
-
-            ForEach(vm.tags.indices) {i in
-                Toggle(vm.tags[i].name, isOn: $enabledTags[i])
-
-            }
-            
-            Button("Save") {
-                saveChanges()
-                isPresented.toggle()
-            }
+        NavigationView {
+            CardMutationView(sideA: $sideA, sideB: $sideB, enabledTags: $enabledTags, tags: vm.tags).navigationBarTitle("Edit Card").navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        Button("Cancel") {
+                            isPresented.toggle()
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .automatic) {
+                        Button("Save Changes") {
+                            saveChanges()
+                            isPresented.toggle()
+                        }.disabled(sideA.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || sideB.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                }
         }
     }
+    
+    
+
 }
 struct EditCardView_Previews: PreviewProvider {
     static let vm = FlashcardsVM()
