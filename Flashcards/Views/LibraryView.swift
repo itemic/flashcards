@@ -43,7 +43,7 @@ struct LibraryView: View {
                 }.padding()
             
             
-        }.navigationTitle("Library")
+        }.navigationTitle("Library").navigationBarTitleDisplayMode(.inline)
         .toolbar {
             
             ToolbarItem(placement: .automatic) {
@@ -86,7 +86,8 @@ struct LibraryView: View {
                 }
             }
 
-        }.navigationBarTitleDisplayMode(.inline)
+        }
+        
         
     }
 }

@@ -11,27 +11,28 @@ struct Sidebar: View {
     
     @State var disclose = true
     @EnvironmentObject var vm: FlashcardsVM
+    
     var body: some View {
         
-        List() {
+        List {
             
             Group {
                 NavigationLink(destination: DetailView()) {
-                    Label("Today", systemImage: "sun.max.fill")
+                    Label("Today", systemImage: "sun.max")
                     
                 }.listItemTint(.yellow)
                 
                 Section(header: Text("Modes")){
                     NavigationLink(destination: LibraryView().environmentObject(vm)) {
-                    Label("Library", systemImage: "books.vertical.fill")
+                    Label("Library", systemImage: "books.vertical")
                 }
                 
                 NavigationLink(destination: TagsView()) {
-                    Label("Tags", systemImage: "tag.fill")
+                    Label("Tags", systemImage: "tag")
                 }
                 
                 NavigationLink(destination: DetailView().environmentObject(vm)) {
-                    Label("Stats", systemImage: "chart.bar.xaxis")
+                    Label("Stats", systemImage: "chart.bar")
 
                 }}
             }
@@ -45,13 +46,13 @@ struct Sidebar: View {
                 ) {
                     ForEach(vm.tags) {tag in
                         NavigationLink(destination: LibraryView(filterTag: tag).environmentObject(vm)) {
-                            Label("\(tag.name)", systemImage: "square.grid.3x3.fill")
+                            Label("\(tag.name)", systemImage: "square.grid.3x3")
                         }
                     }
                     
                     
                         NavigationLink(destination: LibraryView(filterUnfiltered: true).environmentObject(vm)) {
-                            Label("Uncategorized", systemImage: "tag.slash.fill")
+                            Label("Uncategorized", systemImage: "tag.slash")
                         }
                 }.listItemTint(.orange)
     
