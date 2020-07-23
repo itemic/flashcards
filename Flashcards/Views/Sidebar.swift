@@ -22,9 +22,9 @@ struct Sidebar: View {
                     
                 }.listItemTint(.yellow)
                 
-                Section(header: Text("Modes")){
+                Section(header: Text("Libraries")){
                     NavigationLink(destination: LibraryView().environmentObject(vm)) {
-                    Label("Library", systemImage: "books.vertical")
+                    Label("Cards", systemImage: "rectangle.grid.3x2")
                 }
                 
                 NavigationLink(destination: TagsView()) {

@@ -7,12 +7,61 @@
 
 import SwiftUI
 
+enum CardChange {
+    case removed, added, nochange
+}
+
 struct CardMutationView: View {
     
     @Binding var sideA: String
     @Binding var sideB: String
     @Binding var enabledTags: [Bool]
+    var editMode: Bool
     var tags: [Tag]
+    
+    var originalSideA: String?
+    var originalSideB: String?
+    var originalCard: Card?
+    
+    init(sideA: Binding<String>, sideB: Binding<String>, enabledTags: Binding<[Bool]>, tags: [Tag], editTags: Card? = nil) {
+        self._sideA = sideA
+        self._sideB = sideB
+        self._enabledTags = enabledTags
+        
+        self.tags = tags
+        
+        if editTags != nil {
+            self.editMode = true
+            self.originalSideA = sideA.wrappedValue
+            self.originalSideB = sideB.wrappedValue
+            self.originalCard = editTags!
+        } else {
+            self.editMode = false
+
+        }
+    }
+    
+    func getChangeOfTagStatus(tag: Tag) -> CardChange {
+        guard let originalCard = originalCard else {
+            return .nochange
+        }
+        
+        let oBool = originalCard.tags.contains(tag)
+        let cBool = enabledTags[tags.firstIndex(of: tag)!]
+        
+        print("\(oBool) is then \(cBool)")
+        
+        if oBool && !cBool {
+            return .removed
+        }
+        
+        if !oBool && cBool {
+            return .added
+        }
+        
+        
+        return .nochange
+    }
     
     var body: some View {
         
@@ -40,9 +89,9 @@ struct CardMutationView: View {
                         Spacer()
                     }.padding(30).background(Color(UIColor.systemBackground))
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 10) {
                         
-                        
+                        Text("TAGS").font(.headline)
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 250))], spacing: 15) {
                             //                            ForEach(vm.tags.indices) {i in
                             //                                ButtonToggle(name: "\(vm.tags[i].name)", isOn: $enabledTags[i])
@@ -93,6 +142,28 @@ struct CardMutationView: View {
                         }
                         Text("Add a few tags to organize your cards").font(.caption).foregroundColor(.secondary)
                         
+                        if editMode {
+                            Group {
+                                Text("CHANGES").font(.headline)
+                                if sideA != originalCard!.sideA {
+                                    Text("Side A: \(originalCard!.sideA) → \(sideA)")
+                                }
+                                if sideB != originalCard!.sideB {
+                                    Text("Side B: \(originalCard!.sideB) → \(sideB)")
+                                }
+                                
+                                ForEach(tags, id: \.name) {tag in
+                                    switch getChangeOfTagStatus(tag: tag) {
+                                    case .added:
+                                        Text("Added tag \(tag.name)")
+                                    case .removed:
+                                        Text("Removed tag \(tag.name)")
+                                    case .nochange:
+                                        EmptyView()
+                                    }
+                                }
+                            }
+                        }
                         
                     }.padding([.leading, .trailing])
                     
@@ -113,6 +184,6 @@ struct CardMutationView_Previews: PreviewProvider {
     @State static var a: String = "A"
     @State static var b: String = "B"
     static var previews: some View {
-        CardMutationView(sideA: $a, sideB: $b, enabledTags: .constant([false, false, false]), tags: vm.tags)
+        CardMutationView(sideA: $a, sideB: $b, enabledTags: .constant([false, false, false]), tags: vm.tags, editTags: nil)
     }
 }

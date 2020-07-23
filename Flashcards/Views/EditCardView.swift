@@ -46,7 +46,7 @@ struct EditCardView: View {
     
     var body: some View {
         NavigationView {
-            CardMutationView(sideA: $sideA, sideB: $sideB, enabledTags: $enabledTags, tags: vm.tags).navigationBarTitle("Edit Card").navigationBarTitleDisplayMode(.inline)
+            CardMutationView(sideA: $sideA, sideB: $sideB, enabledTags: $enabledTags, tags: vm.tags, editTags: card).navigationBarTitle("Edit Card").navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         Button("Cancel") {
