@@ -52,6 +52,8 @@ struct PracticeModeView: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                         
                         Button("Hard") {
+                            
+                            gameVM.srsUpdate(quality: 2)
                             nextCard()
                         }.padding()
                         .frame(minWidth: 100)
@@ -62,6 +64,8 @@ struct PracticeModeView: View {
                         
                         Button("Good") {
                             
+                            gameVM.srsUpdate(quality: 4)
+                            nextCard()
                         }.padding()
                         .frame(minWidth: 100)
                         .foregroundColor(.white)
@@ -71,6 +75,8 @@ struct PracticeModeView: View {
                         
                         Button("Easy") {
                             
+                            gameVM.srsUpdate(quality: 5)
+                            nextCard()
                         }.padding()
                         .frame(minWidth: 100)
                         .foregroundColor(.white)

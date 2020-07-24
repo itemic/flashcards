@@ -55,7 +55,7 @@ struct TagsView: View {
     
     func delete(at offsets: IndexSet) {
         // delete tags from words
-        for card in vm.words {
+        for card in vm.cards {
             for i in offsets {
                 if card.tags.contains(vm.tags[i]) {
                     card.tags.remove(at: i)

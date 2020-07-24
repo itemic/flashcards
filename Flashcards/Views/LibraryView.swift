@@ -30,7 +30,7 @@ struct LibraryView: View {
         ScrollView {
 
                 LazyVGrid(columns: columns, spacing: 25) {
-                    ForEach(vm.words.filter {
+                    ForEach(vm.cards.filter {
                         
                         filterUnfiltered == true ? $0.tags.isEmpty : filterTag == nil ? true : $0.tags.contains(filterTag!)
                  

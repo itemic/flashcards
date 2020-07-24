@@ -114,6 +114,12 @@ struct CardsGridView: View {
                             Text(tag.name)
                         }
                     }
+                    Text("AB")
+                    HStack {
+                        Text("Reps \(card.abRepetitions)")
+                        Text("Next \(card.abInterval)")
+                        Text("Ease \(String(format: "%.2f", card.abEaseFactor))")
+                    }.font(.caption)
                     
                 }
                 Spacer()
@@ -122,8 +128,9 @@ struct CardsGridView: View {
             .padding()
             Spacer()
             
-        }.frame(height: 100)
-        .background(LinearGradient(gradient: Gradient(colors:  [.white]), startPoint: .top, endPoint: .bottom))
+        }
+//        .background(LinearGradient(gradient: Gradient(colors:  [.white]), startPoint: .top, endPoint: .bottom))
+        .background(Color.blue)
     }
     
     var body: some View {

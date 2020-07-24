@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class FlashcardsVM: ObservableObject {
-    @Published var words: [Card] = [] {
+    @Published var cards: [Card] = [] {
         willSet {
             self.objectWillChange.send()
         }
@@ -28,7 +28,7 @@ class FlashcardsVM: ObservableObject {
         
         tags.append(contentsOf: [t1, t2, t3])
         
-        words = [
+        cards = [
         Card(sideA: "spring", sideB: "春", tags: [t1]),
         Card(sideA: "summer", sideB: "夏", tags: [t1]),
         Card(sideA: "fall", sideB: "秋", tags: [t1]),
@@ -85,7 +85,7 @@ class FlashcardsVM: ObservableObject {
     
     /// Create new card
     func addCard(card: Card) -> () {
-        words.append(card)
+        cards.append(card)
     }
     
 

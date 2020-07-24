@@ -32,7 +32,7 @@ struct PrimaryView: View {
 struct DetailView: View {
     @EnvironmentObject var vm: FlashcardsVM
     func getGameModel() -> GameVM {
-        return GameVM(cards: vm.words)
+        return GameVM(cards: vm.cards)
     }
     var body: some View {
         Text("Detail")
