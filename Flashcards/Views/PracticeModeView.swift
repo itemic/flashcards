@@ -12,9 +12,12 @@ struct PracticeModeView: View {
     @State var flipped = false
     @ObservedObject var gameVM: GameVM
     @State var gameOver = false
+    @State var barValues: [Double] = [1, 1]
     
     func nextCard() {
-        gameVM.getNextWord()
+        gameVM.nextWord()
+        barValues[0] = Double(gameVM.viewedWords.count)
+        barValues[1] = Double(gameVM.cards.count)
         flipped.toggle()
         if gameVM.isGameOver() {
             gameOver = true
@@ -23,8 +26,16 @@ struct PracticeModeView: View {
     
     var body: some View {
         ZStack {
+            
             VStack(spacing: 36) {
                 Text("Remaining: \(gameVM.size)")
+                SegmentedBarView(values: $barValues, colors: [.green, .red])
+                    .padding(18)
+                    .frame(height: 50)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding()
+                    .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
                 ZStack {
                     
                     Text("").font(.system(size: 36))
@@ -47,6 +58,17 @@ struct PracticeModeView: View {
                         }.padding()
                         .frame(minWidth: 100)
                         .foregroundColor(.white)
+                        .background(Color.black)
+                        .cornerRadius(24)
+                        .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
+                        
+                        Button("Difficult") {
+                            
+                            gameVM.srsUpdate(quality: 1)
+                            nextCard()
+                        }.padding()
+                        .frame(minWidth: 100)
+                        .foregroundColor(.white)
                         .background(Color.red)
                         .cornerRadius(24)
                         .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
@@ -62,7 +84,18 @@ struct PracticeModeView: View {
                         .cornerRadius(24)
                         .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                         
-                        Button("Good") {
+                        Button("Okay") {
+                            
+                            gameVM.srsUpdate(quality: 3)
+                            nextCard()
+                        }.padding()
+                        .frame(minWidth: 100)
+                        .foregroundColor(.white)
+                        .background(Color.yellow)
+                        .cornerRadius(24)
+                        .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
+                        
+                        Button("Easy") {
                             
                             gameVM.srsUpdate(quality: 4)
                             nextCard()
@@ -73,7 +106,7 @@ struct PracticeModeView: View {
                         .cornerRadius(24)
                         .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                         
-                        Button("Easy") {
+                        Button("Very Easy") {
                             
                             gameVM.srsUpdate(quality: 5)
                             nextCard()
@@ -93,21 +126,26 @@ struct PracticeModeView: View {
                     .cornerRadius(24)
                     .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                 }
-                
+                Spacer()
                 
                 
             }
-            
+            if gameOver {
+            GeometryReader { geo in
+                Text("Game Over")
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .background(Color.red)
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             }
-        if gameOver {
-        GeometryReader { geo in
-            Text("Game Over")
-                .frame(width: geo.size.width, height: geo.size.height)
-                .background(Color.red)
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-        }
-        }
+            }
+        }.onAppear(perform: {
+            print("A")
+            barValues[0] = Double(gameVM.viewedWords.count)
+            barValues[1] = Double(gameVM.cards.count)
+        })
+       
     }
+    
 }
 
 struct PracticeModeView_Previews: PreviewProvider {

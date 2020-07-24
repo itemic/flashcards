@@ -16,6 +16,7 @@ struct CardMutationView: View {
     @Binding var sideA: String
     @Binding var sideB: String
     @Binding var enabledTags: [Bool]
+  
     var editMode: Bool
     var tags: [Tag]
     

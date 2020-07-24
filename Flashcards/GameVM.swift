@@ -12,7 +12,7 @@ enum CardDirection {
 }
 
 class GameVM: ObservableObject {
-    @Published var cards: [Card]
+    @Published var cards: Array<Card>
     @Published var currentCard: Card?
     @Published var viewedWords: [Card] = []
     
@@ -24,6 +24,43 @@ class GameVM: ObservableObject {
     init(cards: [Card]) {
         self.cards = cards
         self.currentCard = cards.randomElement()!
+    }
+    
+    func nextWord() {
+        guard let currentCard = currentCard else {
+            return
+        }
+        cards.remove(at: cards.firstIndex(of: currentCard)!)
+        viewedWords.append(currentCard)
+        self.currentCard = cards.randomElement()
+    }
+    
+    func getNextInterval(quality: Int, direction: CardDirection = .aToB) -> Int {
+        var card = currentCard!
+        var interval, repetitions, encounters: Int
+        var ease: Double
+        
+        if (direction == .aToB) {
+            interval = card.abInterval
+            repetitions = card.abRepetitions
+            ease = card.abEaseFactor
+            encounters = card.abEncounters
+        } else {
+            interval = card.baInterval
+            repetitions = card.baRepetitions
+            ease = card.baEaseFactor
+            encounters = card.baEncounters
+        }
+        
+        if quality >= 3 {
+            if repetitions == 0 { interval = 1 }
+            else if repetitions == 1 { interval = 6 }
+            else { interval = Int(round(Double(repetitions) * ease))}
+        } else {
+            interval = 1
+        }
+        
+        return interval
     }
     
     func srsUpdate(quality: Int, direction: CardDirection = .aToB) {
@@ -46,16 +83,18 @@ class GameVM: ObservableObject {
         if quality >= 3 {
             if repetitions == 0 { interval = 1 }
             else if repetitions == 1 { interval = 6 }
-            else { interval = Int(round(Double(repetitions) * ease))}
-            repetitions += 1
+            else {
+                interval = Int(round(Double(repetitions) * ease))
+                repetitions += 1
+            }
+                let easeComponent1 = (5 - Double(quality))
+                let easeComponent2 = (0.08 + (5 - Double(quality)) * 0.02)
+                
+                let easeSum = easeComponent1 * easeComponent2
+                
+                let newEase = ease + (0.1  - easeSum)
+                ease = newEase
             
-            var easeComponent1 = (5 - Double(quality))
-            var easeComponent2 = (0.08 + (5 - Double(quality)) * 0.02)
-            
-            var easeSum = easeComponent1 * easeComponent2
-            
-            var newEase = ease + (0.1  - easeSum)
-            ease = newEase
             encounters += 1
         } else {
             repetitions += 1
@@ -87,8 +126,8 @@ class GameVM: ObservableObject {
             viewedWords.append(currentCard!)
             currentCard = cards.randomElement()
         } else {
-//            cards.remove(at: cards.firstIndex(of: currentCard!)!)
-//            viewedWords.append(currentCard!)
+            //            cards.remove(at: cards.firstIndex(of: currentCard!)!)
+            //            viewedWords.append(currentCard!)
         }
         return isGameOver()
     }
