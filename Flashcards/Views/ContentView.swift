@@ -14,7 +14,7 @@ struct ContentView: View {
             Sidebar()
                 .navigationTitle("Flashcards")
                 .environmentObject(vm)
-            PrimaryView()
+            PrimaryView().environmentObject(vm)
             
         }
 //        Text("Hello, world!").padding()
@@ -24,8 +24,9 @@ struct ContentView: View {
 
 
 struct PrimaryView: View {
+    @EnvironmentObject var vm: FlashcardsVM
     var body: some View {
-        Text("hello world").padding()
+        TodayView().environmentObject(vm)
     }
 }
 

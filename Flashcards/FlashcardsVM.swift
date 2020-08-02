@@ -21,6 +21,10 @@ class FlashcardsVM: ObservableObject {
         }
     }
     
+    var cardsDueToday: [Card] {
+        return [cards.first!] // need to actually use 'interval'
+    }
+    
     init() {
         let t1 = Tag(name: "japanese")
         let t2 = Tag(name: "verb")

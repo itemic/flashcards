@@ -17,7 +17,7 @@ struct Sidebar: View {
         List {
             
             Group {
-                NavigationLink(destination: DetailView()) {
+                NavigationLink(destination: TodayView().environmentObject(vm)) {
                     Label("Today", systemImage: "sun.max")
                     
                 }.listItemTint(.yellow)
